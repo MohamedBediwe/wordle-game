@@ -7,7 +7,7 @@ const useWordle = (solution, fetchData) => {
   const [history, setHistory] = useState([]);
   const [isCorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({});
-  const [warning, setWarning] = useState("");
+  // const [warning, setWarning] = useState("");
 
   const formatGuess = () => {
     let solutionArray = [...solution];
@@ -77,13 +77,13 @@ const useWordle = (solution, fetchData) => {
       // adding the guess if only the turn is less than 5
       if (turn > 5) {
         console.log("u used all of ur guesses");
-        setWarning("")
+        // setWarning("");
         return;
       }
       // not accepting the same word twice
       if (history.includes(currentGuess)) {
         console.log("u already tried that word");
-        setWarning("same guess")
+        // setWarning("same guess");
         return;
       }
       // checks if the guess has 5 chars

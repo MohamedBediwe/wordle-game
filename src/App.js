@@ -1,12 +1,29 @@
 import { useEffect, useState } from "react";
 import Wordle from "./components/Wordle";
+import axios from "axios";
 
 function App() {
   const [solution, setSolution] = useState(null);
+
+  const options = {
+    method: "GET",
+    url: "https://random-words5.p.rapidapi.com/getRandom",
+    params: { wordLength: "5" },
+    headers: {
+      "X-RapidAPI-Key": "6c5427a766msh7d99d27c367b963p1f767djsnca52a709d6de",
+      "X-RapidAPI-Host": "random-words5.p.rapidapi.com",
+    },
+  };
+
   const fetchData = async () => {
-    const res = await fetch("http://localhost:3001/solutions");
-    const data = await res.json();
-    setSolution(data[Math.floor(Math.random() * data.length)].word);
+    axios
+      .request(options)
+      .then(function (response) {
+        setSolution(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
